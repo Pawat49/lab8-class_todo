@@ -5,77 +5,37 @@ import uvicorn
 # Creating an app object
 app = FastAPI()
 
-class ToDoList:
-    ID = 1
-
-    def __init__(self, name):
+class Staff:
+    def __init__(self,staff_id,name,building_resposibility,role_id):
+        self.__staff_id = staff_id
         self.__name = name
-        self.__tasks = []
+        self.__building_reposibility = building_resposibility
+        self.__role_id = role_id
 
-    def add_task(self, todo):
-        id = ToDoList.ID
-        todo["id"] = id
-        self.__tasks.append(todo)
-        ToDoList.ID += 1
-        return id
+        
+    def log_out(self):
+        pass
 
-    def get_task(self):
-        return self.__tasks
+class Operation_Staff(Staff):
+    
+    def view_booking_list(self):
+        pass
 
-    def modify_task(self, id, body):
-        for todo in self.__tasks:
-            if (int(todo["id"])) == id:
-                todo["Activity"] = body["Activity"]
-                return {
-                    "data": f"Todo with id {id} has been updated"
-                }
-        return {
-            "data": f"This Todo with id {id} is not found!"
-        }
+    def confirm_booking_list(self):
+        pass
+    
+    def make_report(self):
+        pass
 
-    def delete_task(self, id):
-        for todo in self.__tasks:
-            if int(todo["id"]) == id:
-                self.__tasks.remove(todo)
-                return {
-                    "data": f"Todo with id {id} has been deleted!"
-                }
-        return {
-            "data": f"Todo with id {id} was not found!"
-        }
+    def calculate_invoice(self):
+        pass
 
-my_list = ToDoList("My")
-# Default route
+    def create_invoice(self):
+        pass
 
-# A minimal app to demonstrate the get request
-@app.get("/", tags=['root'])
-async def root() -> dict:
-    return {"Ping": "Pong"}
-
-# Post -- > Create Todo
-@app.post("/todo", tags=["Todos"])
-async def add_todo(task: dict) -> dict:
-    id = my_list.add_task(task)
-    todo = "A Todo "+str(id)+" is added!"
-    return {
-        "data": todo
-    }
-
-# GET -- > Read Todo
-@app.get("/todo", tags=['Todos'])
-async def get_todos() -> dict:
-    return {"Data": my_list.get_task()}
-
-# PUT  -- > Update Todo
-@app.put("/todo/{id}", tags=["Todos"])
-async def update_todo(id: int, body: dict) -> dict:
-    return my_list.modify_task(id, body)
-
-# DELETE --> Delete Todo
-@app.delete("/todo/{id}", tags=["Todos"])
-async def delete_todo(id: int) -> dict:
-    return my_list.delete_task(id)
-
+@app.get("/")
+async def root():
+    return {"message":"hello tonson"}
 
 if __name__ == "__main__":
     uvicorn.run("class_todo:app", host="127.0.0.1", port=8000, log_level="info")
