@@ -12,6 +12,8 @@ class Staff:
         self.__building_reposibility = building_resposibility
         self.__role_id = role_id
 
+    def login(self,email,password):
+        pass
         
     def log_out(self):
         pass
@@ -27,11 +29,29 @@ class Operation_Staff(Staff):
     def make_report(self):
         pass
 
-    def calculate_invoice(self):
-        pass
+    def calculate_invoice(self,room_cost,electricity_cost,water_cost,parking_slot_cost,share_facility_cost,maintenance_cost,discount_cost):
+        
+        if discount_cost == 0:
 
-    def create_invoice(self):
-        pass
+            return room_cost + electricity_cost + water_cost + parking_slot_cost + share_facility_cost + maintenance_cost
+        
+        else:
+
+            return (room_cost + electricity_cost + water_cost + parking_slot_cost + share_facility_cost + maintenance_cost) - discount_cost
+        
+
+    def create_invoice(self,invoice_type,room_cost,electricity_cost,water_cost,parking_slot_cost,share_facility_cost,maintenance_cost,discount_cost):
+        
+        self.__net_amount = 0
+        
+        self.__net_amount = self.calculate_invoice(room_cost,electricity_cost,water_cost,parking_slot_cost,share_facility_cost,maintenance_cost,discount_cost)
+        
+
+class Invoice:
+    pass
+
+        
+
 
 @app.get("/")
 async def root():
