@@ -1,3 +1,6 @@
+class Dorm:
+    pass
+
 class Staff:
     def __init__(self,staff_id,name,building_resposibility,role_id):
         self.__staff_id = staff_id
@@ -38,11 +41,21 @@ class Operation_Staff(Staff):
         self.__net_amount = 0
         
         self.__net_amount = self.calculate_invoice(room_cost,electricity_cost,water_cost,parking_slot_cost,share_facility_cost,maintenance_cost,discount_cost)
+        
         self.__amount_before_discount = self.__net_amount + discount_cost
 
         return [invoice_type,room_cost,electricity_cost,water_cost,parking_slot_cost,share_facility_cost,maintenance_cost,discount_cost,self.__amount_before_discount,self.__net_amount]
         
+class User:
+    pass
+
+class Resident(User):
+    pass
+
 class Invoice:
+    pass
+
+class Discount:
     pass
 
 def main():
