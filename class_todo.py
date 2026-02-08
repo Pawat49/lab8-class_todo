@@ -38,8 +38,9 @@ class Operation_Staff(Staff):
         self.__net_amount = 0
         
         self.__net_amount = self.calculate_invoice(room_cost,electricity_cost,water_cost,parking_slot_cost,share_facility_cost,maintenance_cost,discount_cost)
+        self.__amount_before_discount = self.__net_amount + discount_cost
 
-        return self.__net_amount
+        return [invoice_type,room_cost,electricity_cost,water_cost,parking_slot_cost,share_facility_cost,maintenance_cost,discount_cost,self.__amount_before_discount,self.__net_amount]
         
 class Invoice:
     pass
