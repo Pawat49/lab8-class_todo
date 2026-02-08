@@ -1,10 +1,3 @@
-# Importing the FastApi class
-from fastapi import FastAPI
-import uvicorn
-
-# Creating an app object
-app = FastAPI()
-
 class Staff:
     def __init__(self,staff_id,name,building_resposibility,role_id):
         self.__staff_id = staff_id
@@ -48,16 +41,11 @@ class Operation_Staff(Staff):
 
         return self.__net_amount
         
-
 class Invoice:
     pass
 
-        
-
-
-@app.get("/")
-async def root():
-    return {"message":"hello tonson"}
+def main():
+    print("Hello Nigga")
 
 if __name__ == "__main__":
-    uvicorn.run("class_todo:app", host="127.0.0.1", port=8000, log_level="info")
+    main()
