@@ -150,17 +150,18 @@ class Discount(ABC):
         return None
 
 class Student_Discount(Discount):
-    # Deduct 3% of the Room Cost
+    # นักศึกษา: ลดค่าเช่า 3% (ต้องยืนยันสถานะทุกเทอม)
+    # องค์กร: ลดค่าเช่า 8% แต่ขั้นต่ำ 5 ห้อง และสัญญารายปี
     def calculate_discount(self, room_cost):
         return room_cost * 0.03
 
 class Early_Discount(Discount):
-    # Deduct flat 100
+    # ชำระบิลก่อนวันที่ 5 ของเดือน ลดค่าบริการส่วนกลาง 100 บาท
     def calculate_discount(self, target_amount=0):
         return 100
 
 class Long_Term_Discount(Discount):
-    # Deduct 5% of Room Cost
+    # ทำสัญญา 12 เดือน ลดค่าเช่า 5% ตลอดสัญญา
     def calculate_discount(self, room_cost):
         return room_cost * 0.05
 
