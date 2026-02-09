@@ -15,6 +15,12 @@ class Dorm:
     def verify_identity(self,email,password):
         ...
 
+    def add_resident(self,resident):
+        self.__resident_list.append(resident)
+        
+    def add_operation_staff(self,operation_staff):
+        self.__os_staff_list.append(operation_staff)
+
 class Profile(ABC):
     
     def __init__(self,profile_id,name,email,phone_number):
@@ -66,10 +72,13 @@ class Profile(ABC):
         pass
         
 
-class Staff:
-    def __init__(self,staff_id,name,building_resposibility,role_id):
+class Staff(Profile):
+    def __init__(self,staff_id,name,email,phone_number,building_resposibility,role_id):
+        super().__init__(staff_id,name,email,phone_number,building_resposibility,role_id)
         self.__staff_id = staff_id
         self.__name = name
+        self.__email = email
+        self.__phone_number = phone_number
         self.__building_reposibility = building_resposibility
         self.__role_id = role_id
         
@@ -110,7 +119,8 @@ class Operation_Staff(Staff):
         
 class User(Profile):
 
-    def __init__(self,name,email,phone_number):
+    def __init__(self,profile_id,name,email,phone_number):
+        super().__init__(profile_id,name,email,phone_number)
         self.__record_list = []
         self.__invoice_list = []
 
@@ -207,6 +217,16 @@ class Long_Term_Discount(Discount):
 
 def test():
     print("Hello World")
+    dorm = Dorm("Ducky")
+    kenny = Resident("kenny", "ken@gmail.com", "ken", "1234567890")
+    # (staff_id,name,email,phone_number,building_resposibility,role_id)
+    gong = Operation_Staff("6767676767","gong_inwzaa","gonginwzaa007@gmail.com","67686970","A01","1234567890")
+    gong.password_setting("67766776")
+    dorm.add_resident(kenny)
+    dorm.add_operation_staff(gong)
+    gong.create_invoice()
+    
+    
 
 if __name__ == "__main__":
     test()
