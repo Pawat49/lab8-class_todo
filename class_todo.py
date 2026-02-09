@@ -1,5 +1,8 @@
 class Dorm:
-    pass
+    def __init__(self,name):
+        self.__name = name
+        self.__building_list = []
+        self.__resident_list = []
 
 class Staff:
     def __init__(self,staff_id,name,building_resposibility,role_id):
