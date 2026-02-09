@@ -198,6 +198,7 @@ def test():
         maintenance_cost=0,
         discount_obj=discount_obj
     )
+    print("="*70)
 
 if __name__ == "__main__":
     test()
